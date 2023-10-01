@@ -27,27 +27,16 @@ jobs:
     - name: Identify Modified Functions
       id: identify-modified-functions
       run: |
-        modified_functions=()
-
-        changed_files=$(git diff --name-only ${{ github.base_ref }} ${{ github.head_ref }})
-        echo "::group::Changed Files"
-        echo "$changed_files"
-        echo "hola"
-        echo "::endgroup::"
-        # modified_functions=()
-        # echo "modified-functions::$modified_functions"
-        # changed_files=$(git diff --name-only ${{ github.base_ref }} ${{ github.head_ref }})
-        # echo "changed_files::$changed_files"
-
-        # extract_function_names() {
-        #   local file="$1"
-        #   # Implement logic to extract function names from the file and append to modified_functions array
-        #   # For example, if you have JavaScript/Node.js functions, you might use regex:
-        #   # function_names=$(grep -oP 'function \K\w+' "$file")
-        #   # You should customize this logic based on your file structure and language.
-        #   # Append extracted function names to the modified_functions array
-        #   # modified_functions+=($function_names)
-        # }
+        # Check if there's only one commit in the repository
+        if [ -z "$(git rev-parse HEAD^ 2>/dev/null)" ]; then
+          CHANGED_FUNCTIONS=$(git diff --name-only HEAD)
+          echo "ifff"
+        else
+          CHANGED_FUNCTIONS=$(git diff --name-only HEAD^..HEAD)
+          echo "elseeee"
+        fi
+        echo "Modified functions: $CHANGED_FUNCTIONS"
+        # echo "::set-output name=modified_functions::$CHANGED_FUNCTIONS"
 
         # # Loop through changed files and extract function names
         # for file in $changed_files; do
