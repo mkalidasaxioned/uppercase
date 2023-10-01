@@ -1,0 +1,21 @@
+{
+  "name": "add-retailer-note",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx @google-cloud/functions-framework --target=addRetailerNote"
+  },
+  "author": "ClearForMe",
+  "license": "ISC",
+  "dependencies": {
+    "@slack/web-api": "^6.7.1",
+    "googleapis": "^105.0.0",
+    "moment": "^2.29.4",
+    "mongodb": "^4.5.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@google-cloud/functions-framework": "^3.1.0"
+  }
+}
