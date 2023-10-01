@@ -1,4 +1,4 @@
-name: Deploy modified Google Cloud Functions
+name: Deploy1 modified Google Cloud Functions
 on: push
   # push:
   #   branches:
@@ -28,14 +28,12 @@ jobs:
       id: identify-modified-functions
       run: |
         modified_functions=()
-        echo "::group::Modified Functions"  # Start a grouping for the output
-        echo "$modified_functions"          # Print the modified_functions variable
-        echo "::endgroup::"                # End the grouping
 
         changed_files=$(git diff --name-only ${{ github.base_ref }} ${{ github.head_ref }})
-        echo "::group::Changed Files"       # Start a grouping for the output
-        echo "$changed_files"              # Print the changed_files variable
-        echo "::endgroup::"                # End the grouping
+        echo "::group::Changed Files"
+        echo "$changed_files"
+        echo "hola"
+        echo "::endgroup::"
         # modified_functions=()
         # echo "modified-functions::$modified_functions"
         # changed_files=$(git diff --name-only ${{ github.base_ref }} ${{ github.head_ref }})
