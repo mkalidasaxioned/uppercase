@@ -28,14 +28,15 @@ jobs:
       id: identify-modified-functions
       run: |
         # Check if there's only one commit in the repository
-        if [ -z "$(git rev-parse HEAD^ 2>/dev/null)" ]; then
-          CHANGED_FUNCTIONS=$(git diff --name-only HEAD)
+        if [ "$(git rev-list --count HEAD)" -eq "1" ]; then
+          CHANGED_FUNCTIONS=$(git diff --name-only HEAD~1..HEAD)
           echo "ifff"
         else
           CHANGED_FUNCTIONS=$(git diff --name-only HEAD^..HEAD)
           echo "elseeee"
         fi
         echo "Modified functions: $CHANGED_FUNCTIONS"
+
         # echo "::set-output name=modified_functions::$CHANGED_FUNCTIONS"
 
         # # Loop through changed files and extract function names
